@@ -10,10 +10,11 @@ function sendAccountInfo(state){
         let registerName = document.getElementById("registerName");
         let registerPass = document.getElementById("registerPass");
         let registerPassCompare = document.getElementById("registerPass2");
+        let registerEmail = document.getElementById("registerEmail");
         $("#registerBtn").hide();
     
         if(registerPass.value === registerPassCompare.value){
-            mp.trigger("loginDataToServer", registerName.value, registerPass.value, state);
+            mp.trigger("loginDataToServer", registerName.value, registerPass.value, registerEmail.value, state);
         } else {
             $(".password-mismatch").show();
             $("#registerBtn").show();
