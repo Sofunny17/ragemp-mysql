@@ -39,7 +39,7 @@ module.exports =
     }
 };
 
-mp.events.add("sendDataToServer", (player, username, pass, state) => {
+mp.events.add("sendDataToServer", (player, username, pass, email, state) => {
     let loggedAccount = mp.players.toArray().find(p => p.loggedInAs == username);
     switch(state){
         case 0: //Login State
@@ -76,7 +76,7 @@ mp.events.add("sendDataToServer", (player, username, pass, state) => {
                     } else {
                         bcrypt.hash(pass, null, null, function(err, hash) {
                             if(!err){
-                                gm.mysql.handle.query('INSERT INTO `accounts` SET username = ?, password = ?', [username, hash], function(err, res){
+                                gm.mysql.handle.query('INSERT INTO `accounts` SET username = ?, password = ?, email = ?', [username, hash, email], function(err, res){
                                     if(!err){
                                         player.name = username;
                                         player.call("loginHandler", ["registered"]);
