@@ -1,8 +1,8 @@
 var loginBrowser = mp.browsers.new("package://login/index.html");
 mp.gui.cursor.show(true, true);
 
-mp.events.add("loginDataToServer", (user, pass, state) => {
-    mp.events.callRemote("sendDataToServer", user, pass, state);
+mp.events.add("loginDataToServer", (user, pass, email, state) => {
+    mp.events.callRemote("sendDataToServer", user, pass, email, state);
 });
 
 mp.events.add("loginHandler", (handle) => {
